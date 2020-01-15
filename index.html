@@ -36,28 +36,33 @@
 
 				<article id="post-2" class="post-2 page type-page status-publish hentry">
 					<div class="entry-content">
-						<p class="lead">A YANG model catalog and registry that allows users to find models relevant to their use cases from the large and growing number of YANG modules being published.</p>
-						<p>This server is running:</p>
-						<ul>
-							<li>A NETCONF and REST (not RESTCONF-compliant yet) server loaded with the YANG module from <a href="https://tools.ietf.org/html/draft-clacla-netmod-model-catalog">draft-clacla-netmod-model-catalog</a>. It currently only allows public read access to
+						<p class="lead">YANG is a data modeling language developed in the Internet Engineering Task Force. It is used to model configuration and state data manipulated by protocols such as NETCONF and RESTCONF. YANG enables easier management of network elements, such as routers, and is widely used and deployed by many network equipment vendors and network operators.</p>
+ 						<p class="lead">The YANG Catalog allows users to find models relevant to their use cases from the large and growing number of YANG modules being published. The YANG Catalog includes modules from various companies and organizations, including standards organizations such as the IETF, the Broadband Forum, the IEEE, the Metro Ethernet Forum, including some equipment vendors, as well as open source communities such as the Open Daylight Project.</p>
+
+ 						<h2>Web Access</h2>						
+
+ 						<p>The YANG Catalog website provides links to:</p>
+ 							<ul>
+								<li>A NETCONF and REST (not RESTCONF-compliant yet) server loaded with the YANG module from <a href="https://tools.ietf.org/html/draft-clacla-netmod-model-catalog">draft-clacla-netmod-model-catalog</a>. It currently only allows public read access to
 								the content. Feel free to reach out through the github forum if you are interested in write access. The username is <code>oper</code> and the password is <code>oper</code>.</li>
-							<li>A <a href="/yangvalidator">YANG Validator</a>, a web frontend that allows for validation of YANG modules and IETF drafts.</li>
-							<li>A <a href="/yang-search">YANG Search</a>, a web frontend that allows for searches over the content of the module catalog.</li>
-							<li>A <a href="/yang-search/impact_analysis/">YANG impact analysis</a> tool.</li>
-							<li>View a module's <a href="/yang-search/module_details/">metadata details</a>.</li>
-							<li>A <a href="/yangre">YANG Regex Validator</a>, a YANG regular expression validator to experiment with W3C YANG "pattern" statements</li>
-						</ul>
-						<h2>APIs</h2>
-						<p>For access to the REST interface using curl, try the following to receive the content of the organizations subtree from the
-							<a href="https://raw.githubusercontent.com/xorrkaz/netmod-yang-catalog/master/yang-catalog.yang">yang-catalog.yang</a> module. Note, the currently supported revision yang-catalog.yang is <b>2017-09-26</b>:</p>
+								<li>A <a href="/yangvalidator">YANG Validator</a>: a web frontend that allows for validation of YANG modules and IETF Internet-Drafts</li>
+ 								<li>A <a href="/yang-search">YANG Search</a>: a web frontend that allows for searches of the content of the YANG Catalog</li>
+ 								<li>A <a href="/yang-search/impact_analysis/">YANG Impact Analysis</a>: a tool which graphs the dependencies across individual YANG modules</li>
+ 								<li><a href="/yang-search/module_details/">YANG Module Detail Viewer</a>: a web frontend which displays the detailed metadata  of any particular module</li>
+ 								<li>A <a href="/yangre">YANG Regex Validator</a>: a YANG regular expression validator which enables experimentation with W3C YANG "pattern" statements</li>
+							</ul>
+						<h2>API Accesss</h2>
+ 						<p>The YANG Catalog includes a NETCONF and REST (not RESTCONF-compliant yet) server loaded with the YANG module from draft-clacla-netmod-model-catalog with public read access to the content. The username is <em>oper</em> and the password is <em>oper</em>. For write access, please <a href="https://yangcatalog.org/create.html ">submit a request via this form</a>.</p>
+
+ 						<p>For access to the YANG Catalog’s REST interface using curl, use the following to receive the content of the organization’s subtree from the yang-catalog.yang module. (Note, the currently supported revision yang-catalog.yang is <b>2017-09-26</b>)</p>
+
 						<pre>$ curl https://yangcatalog.org/api/search/catalog</pre>
-						<p>This will return JSON-formatted data.  <b>NOTE:</b> the catalog is quite large and growing all the time.  Returning the whole Catalog will
-							pulling down quite a bit of data.  Alternaitvely, you can use the following to pull the module metadata:</p>
+
+ 						<p>This will return JSON-formatted data.  <b>NOTE:</b> the catalog is quite large and growing all the time. You may also use the following to pull the module metadata:</p>						
 						<pre>$ curl https://yangcatalog.org/api/search/modules</pre>
-						<p>And use the following to get vendor implementation metadata:</p>
+						<p>The following will provide vendor implementation metadata:</p>
 						<pre>$ curl https://yangcatalog.org/api/search/vendors</pre>
-						<p>These API endpoints may still produce large result sets.  To get more granular results, use the module or keyword <a href="/contribute.html#model_get">
-							search interface</a>.</p>
+						
 					</div>
 					<!-- .entry-content -->
 				</article>

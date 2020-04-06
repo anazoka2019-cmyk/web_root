@@ -5,6 +5,10 @@ ARG YANG_GID
 ENV YANG_ID "$YANG_ID"
 ENV YANG_GID "$YANG_GID"
 
+RUN mkdir /var/run/mysqld
+RUN chown -R $YANG_ID:$YANG_GID /var/run/mysqld
+RUN chmod 777 /var/run/mysqld
+
 COPY web_root /usr/share/nginx/html/
 COPY search/static/ /usr/share/nginx/html/yang-search/static/
 COPY yangre/app/static/ /usr/share/nginx/html/yangre/static/

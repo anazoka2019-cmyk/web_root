@@ -9,16 +9,13 @@ RUN mkdir /var/run/mysqld
 RUN chown -R $YANG_ID:$YANG_GID /var/run/mysqld
 RUN chmod 777 /var/run/mysqld
 
-COPY web_root /usr/share/nginx/html/
-COPY search/static/ /usr/share/nginx/html/yang-search/static/
-COPY yangre/app/static/ /usr/share/nginx/html/yangre/static/
-COPY bottle-yang-extractor-validator/yangvalidator/static/ /usr/share/nginx/html/yangvalidator/static/
-COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
-COPY ./resources/YANG-modules /usr/share/nginx/html/YANG-modules/
-COPY ./resources/compatibility /usr/share/nginx/html/compatibility/
-COPY ./resources/private /usr/share/nginx/html/private/
-COPY ./resources/results /usr/share/nginx/html/results/
-COPY ./resources/statistics.html /usr/share/nginx/html/
-
-RUN chown -R $YANG_ID:$YANG_GID /usr/share/nginx/html
-
+COPY --chown=$YANG_ID:$YANG_GID web_root /usr/share/nginx/html/
+COPY --chown=$YANG_ID:$YANG_GID search/static/ /usr/share/nginx/html/yang-search/static/
+COPY --chown=$YANG_ID:$YANG_GID yangre/app/static/ /usr/share/nginx/html/yangre/static/
+COPY --chown=$YANG_ID:$YANG_GID bottle-yang-extractor-validator/yangvalidator/static/ /usr/share/nginx/html/yangvalidator/static/
+COPY --chown=$YANG_ID:$YANG_GID conf/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --chown=$YANG_ID:$YANG_GID ./resources/YANG-modules /usr/share/nginx/html/YANG-modules/
+COPY --chown=$YANG_ID:$YANG_GID ./resources/compatibility /usr/share/nginx/html/compatibility/
+COPY --chown=$YANG_ID:$YANG_GID ./resources/private /usr/share/nginx/html/private/
+COPY --chown=$YANG_ID:$YANG_GID ./resources/results /usr/share/nginx/html/results/
+COPY --chown=$YANG_ID:$YANG_GID ./resources/statistics.html /usr/share/nginx/html/

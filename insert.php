@@ -1,9 +1,11 @@
  <?php
 
-$servername = "localhost";
-$username = "yang";
-$password = "Y@ng3r123";
-$dbname = "yang_catalog";
+$config_ini_file = parse_ini_file("/etc/yangcatalog/yangcatalog.conf", true)
+
+$servername = $config_ini_file['DB-Section']['host'];
+$username = $config_ini_file['DB-Section']['user'];
+$password = $config_ini_file['DB-Section']['password'];
+$dbname = $config_ini_file['DB-Section']['name-users'];
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);

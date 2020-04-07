@@ -6,7 +6,7 @@ ENV YANG_ID "$YANG_ID"
 ENV YANG_GID "$YANG_GID"
 
 RUN groupadd -g ${YANG_GID} -r yang \
-  && useradd --no-log-init -r -g yang -u ${YANG_ID} -d $VIRTUAL_ENV yang
+  && useradd --no-log-init -r -g yang -u ${YANG_ID} -m -d /home/yang yang
 
 RUN mkdir /var/run/mysqld
 RUN chown -R $YANG_ID:$YANG_GID /var/run/mysqld

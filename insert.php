@@ -6,6 +6,7 @@ $servername = $config_ini_file['DB-Section']['host'];
 $username = $config_ini_file['DB-Section']['user'];
 $password = $config_ini_file['DB-Section']['password'];
 $dbname = $config_ini_file['DB-Section']['name-users'];
+$sendto = $config_ini_file['Message-Section']['email-to'];
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -74,10 +75,9 @@ else
 
 		if (mysqli_query($conn, $sql)) {
                         $subject = "Request for access confirmation";
-                        $to = "mirkovac@cisco.com, bclaise@cisco.com, jclarke@cisco.com";
                         $msg = "User $Username with email $Email is requesting access \n Please go to yang project run python validate.py and follow the instructions. The script can be found in yangcatalog.org under /home/miroslav/yang/tools/validate/validate.py";
 			$headers = "From: $Email";
-                        mail($to, $subject, $msg, $headers);
+                        mail($sendto, $subject, $msg, $headers);
                         echo "User $Username created successfully, email sent for access confirmation";
                 }
 		else {

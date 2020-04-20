@@ -32,3 +32,5 @@ COPY --chown=yang:yang ./resources/statistics.html /usr/share/nginx/html/statist
 COPY ./resources/main.cf /etc/postfix/main.cf
 
 RUN chown -R yang:yang /usr/share/nginx/html
+
+CMD service postfix start && service php5-fpm start && nginx

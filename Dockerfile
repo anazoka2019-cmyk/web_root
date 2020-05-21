@@ -39,8 +39,7 @@ COPY --chown=yang:yang ./resources/statistics.html /usr/share/nginx/html/statist
 COPY ./resources/main.cf /etc/postfix/main.cf
 COPY ./resources/rsyncd.conf /etc/rsyncd.conf
 
-RUN /etc
-/init.d/xinetd start
+RUN /etc/init.d/xinetd start
 
 RUN chown -R yang:yang /usr/share/nginx/html
 

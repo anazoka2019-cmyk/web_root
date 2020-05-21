@@ -20,8 +20,10 @@ RUN apt-get -y install rsync xinetd
 RUN apt-get -y install net-tools
 RUN apt-get autoremove -y
 
+COPY ./resources/rsync /etc/xinetd.d/rsync
 RUN sed -i 's/disable[[:space:]]*=[[:space:]]*yes/disable = no/g' /etc/xinetd.d/rsync # enable rsync
 
+RUN /etc/init.d/xinetd restart
 
 COPY --chown=yang:yang web_root /usr/share/nginx/html/
 COPY --chown=yang:yang search/static/ /usr/share/nginx/html/yang-search/static/

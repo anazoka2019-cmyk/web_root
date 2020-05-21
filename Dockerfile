@@ -16,7 +16,12 @@ RUN apt-get update
 RUN echo postfix postfix/mailname string yang2.amsl.com | debconf-set-selections; \
     echo postfix postfix/main_mailer_type string 'Internet Site' | debconf-set-selections; \
     apt-get -y install postfix
+RUN apt-get -y install rsync xinetd
+RUN apt-get -y install net-tools
 RUN apt-get autoremove -y
+
+RUN sed -i 's/disable[[:space:]]*=[[:space:]]*yes/disable = no/g' /etc/xinetd.d/rsync # enable rsync
+
 
 COPY --chown=yang:yang web_root /usr/share/nginx/html/
 COPY --chown=yang:yang search/static/ /usr/share/nginx/html/yang-search/static/
@@ -30,7 +35,11 @@ COPY --chown=yang:yang ./resources/results /usr/share/nginx/html/results/
 COPY --chown=yang:yang ./resources/statistics.html /usr/share/nginx/html/statistics.html
 
 COPY ./resources/main.cf /etc/postfix/main.cf
+COPY ./resources/rsyncd.conf /etc/rsyncd.conf
+
+RUN /etc/rc.d/init.d/xinetd start
+RUN chkconfig xinetd on
 
 RUN chown -R yang:yang /usr/share/nginx/html
 
-CMD service postfix start && service php5-fpm start && nginx
+CMD /etc/rc.d/init.d/xinetd start && service postfix start && service php5-fpm start && nginx

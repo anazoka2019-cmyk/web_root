@@ -39,9 +39,9 @@ COPY --chown=yang:yang ./resources/statistics.html /usr/share/nginx/html/statist
 COPY ./resources/main.cf /etc/postfix/main.cf
 COPY ./resources/rsyncd.conf /etc/rsyncd.conf
 
-RUN /etc/rc.d/init.d/xinetd start
+RUN /etc/init.d/xinetd start
 RUN chkconfig xinetd on
 
 RUN chown -R yang:yang /usr/share/nginx/html
 
-CMD /etc/rc.d/init.d/xinetd start && service postfix start && service php5-fpm start && nginx
+CMD /etc/init.d/xinetd start && service postfix start && service php5-fpm start && nginx

@@ -1,9 +1,67 @@
-FROM vutran/docker-nginx-php5-fpm
+FROM ubuntu:18.04
+
+RUN set -ex; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		pwgen \
+		tzdata \
+		xz-utils;
+
+RUN apt-get update && apt-get -y install \
+    software-properties-common \
+    debian-archive-keyring \
+    wget \
+    curl \
+    vim \
+    aptitude \
+    dialog \
+    net-tools \
+    mcrypt \
+    build-essential \
+    tcl8.5 \
+    git
+
+RUN apt-add-repository ppa:ondrej/php
+
+RUN apt-get update && apt-get -y install \
+    nginx \
+    php7.0-fpm \
+    php7.0-cli \
+    php7.0-mysql \
+    php7.0-curl \
+    php7.0-mcrypt \
+    php7.0-gd \
+    php7.0-redis
+
+# Turn off daemon mode
+# Reference: http://stackoverflow.com/questions/18861300/how-to-run-nginx-within-docker-container-without-halting
+RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+
+# Backup the default configurations
+RUN cp /etc/php/7.0/fpm/php.ini /etc/php/7.0/fpm/php.ini.original.bak
+RUN mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.original
+
+# Configure PHP settings
+RUN perl -pi -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/7.0/fpm/php.ini
+RUN perl -pi -e 's/allow_url_fopen = Off/allow_url_fopen = On/g' /etc/php/7.0/fpm/php.ini
+RUN perl -pi -e 's/expose_php = On/expose_php = Off/g' /etc/php/7.0/fpm/php.ini
+
+# Copy default site conf
+COPY conf/default.conf /etc/nginx/sites-available/default
+
+# Copy the index.php file
+#COPY index.php /var/www/html/index.php
+
+# Mount volumes
+VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/www/html"]
+
 ARG YANG_ID
 ARG YANG_GID
+ARG NGINX_FILES
 
 ENV YANG_ID "$YANG_ID"
 ENV YANG_GID "$YANG_GID"
+ENV NGINX_FILES "$NGINX_FILES"
 
 RUN groupadd -g ${YANG_GID} -r yang \
   && useradd --no-log-init -r -g yang -u ${YANG_ID} -m -d /home/yang yang
@@ -29,7 +87,9 @@ COPY --chown=yang:yang web_root /usr/share/nginx/html/
 COPY --chown=yang:yang search/static/ /usr/share/nginx/html/yang-search/static/
 COPY --chown=yang:yang yangre/app/static/ /usr/share/nginx/html/yangre/static/
 COPY --chown=yang:yang bottle-yang-extractor-validator/yangvalidator/static/ /usr/share/nginx/html/yangvalidator/static/
-COPY --chown=yang:yang conf/nginx.conf /etc/nginx/conf.d/default.conf
+#COPY --chown=yang:yang conf/nginx-ssl.conf /etc/nginx/conf.d/yangcatalog-ssl.conf
+#COPY --chown=yang:yang conf/nginx.conf /etc/nginx/conf.d/yangcatalog.conf
+COPY --chown=yang:yang conf/${NGINX_FILES}  /etc/nginx/conf.d/.
 COPY --chown=yang:yang ./resources/YANG-modules /usr/share/nginx/html/YANG-modules/
 COPY --chown=yang:yang ./resources/compatibility /usr/share/nginx/html/compatibility/
 COPY --chown=yang:yang ./resources/private /usr/share/nginx/html/private/
@@ -43,4 +103,11 @@ RUN /etc/init.d/xinetd start
 
 RUN chown -R yang:yang /usr/share/nginx/html
 
-CMD /etc/init.d/xinetd start && service postfix start && service php5-fpm start && nginx
+CMD /etc/init.d/xinetd start && service postfix start && service php7.0-fpm start && nginx
+
+# Set the current working directory
+WORKDIR /var/www/html
+
+# Expose port 80
+EXPOSE 80
+EXPOSE 443

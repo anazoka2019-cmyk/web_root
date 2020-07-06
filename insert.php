@@ -1,6 +1,6 @@
  <?php
 
-$config_ini_file = parse_ini_file("/etc/yangcatalog/yangcatalog.conf", true)
+$config_ini_file = parse_ini_file("/etc/yangcatalog/yangcatalog.conf", true);
 
 $servername = $config_ini_file['DB-Section']['host'];
 $username = $config_ini_file['DB-Section']['user'];

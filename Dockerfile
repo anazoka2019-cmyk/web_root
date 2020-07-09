@@ -88,11 +88,6 @@ COPY --chown=yang:yang search/static/ /usr/share/nginx/html/yang-search/static/
 COPY --chown=yang:yang yangre/app/static/ /usr/share/nginx/html/yangre/static/
 COPY --chown=yang:yang bottle-yang-extractor-validator/yangvalidator/static/ /usr/share/nginx/html/yangvalidator/static/
 COPY --chown=yang:yang conf/${NGINX_FILES}  /etc/nginx/conf.d/
-COPY --chown=yang:yang ./resources/YANG-modules /usr/share/nginx/html/YANG-modules/
-COPY --chown=yang:yang ./resources/compatibility /usr/share/nginx/html/compatibility/
-COPY --chown=yang:yang ./resources/private /usr/share/nginx/html/private/
-COPY --chown=yang:yang ./resources/results /usr/share/nginx/html/results/
-COPY --chown=yang:yang ./resources/statistics.html /usr/share/nginx/html/statistics.html
 
 COPY ./resources/main.cf /etc/postfix/main.cf
 COPY ./resources/rsyncd.conf /etc/rsyncd.conf

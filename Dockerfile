@@ -83,6 +83,7 @@ RUN sed -i 's/disable[[:space:]]*=[[:space:]]*yes/disable = no/g' /etc/xinetd.d/
 
 RUN /etc/init.d/xinetd restart
 
+COPY --chown=yang:yang . /usr/share/nginx/html
 COPY --chown=yang:yang web_root /usr/share/nginx/html/
 COPY --chown=yang:yang search/static/ /usr/share/nginx/html/yang-search/static/
 COPY --chown=yang:yang yangre/app/static/ /usr/share/nginx/html/yangre/static/

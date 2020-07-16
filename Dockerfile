@@ -93,6 +93,7 @@ COPY ./resources/main.cf /etc/postfix/main.cf
 COPY ./resources/rsyncd.conf /etc/rsyncd.conf
 
 RUN /etc/init.d/xinetd start
+RUN ln -s /usr/share/nginx/html/stats/statistics.html /usr/share/nginx/html/statistics.html
 
 RUN chown -R yang:yang /usr/share/nginx/html
 

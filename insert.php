@@ -4,7 +4,7 @@ $config_ini_file = parse_ini_file("/etc/yangcatalog/yangcatalog.conf", true);
 
 $servername = $config_ini_file['DB-Section']['host'];
 $username = $config_ini_file['DB-Section']['user'];
-$password = $config_ini_file['DB-Section']['password'];
+$password = $config_ini_file['Secrets-Section']['mysql-password'];
 $dbname = $config_ini_file['DB-Section']['name-users'];
 $sendto = $config_ini_file['Message-Section']['email-to'];
 

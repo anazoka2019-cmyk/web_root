@@ -11,8 +11,6 @@ RUN apt-get update && apt-get -y install \
     software-properties-common \
     debian-archive-keyring \
     wget \
-    curl \
-    vim \
     aptitude \
     dialog \
     net-tools \

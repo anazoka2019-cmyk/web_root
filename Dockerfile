@@ -71,7 +71,7 @@ RUN chmod 777 /var/run/mysqld
 RUN apt-get update
 RUN echo postfix postfix/mailname string yang2.amsl.com | debconf-set-selections; \
     echo postfix postfix/main_mailer_type string 'Internet Site' | debconf-set-selections; \
-    apt-get -y install postfix
+    apt-get -y install postfix rsyslog systemd
 RUN apt-get -y install rsync xinetd
 RUN apt-get -y install net-tools
 RUN apt-get autoremove -y
@@ -95,7 +95,7 @@ RUN ln -s /usr/share/nginx/html/stats/statistics.html /usr/share/nginx/html/stat
 
 RUN chown -R yang:yang /usr/share/nginx/html
 
-CMD /etc/init.d/xinetd start && service postfix start && service php7.0-fpm start && nginx
+CMD /etc/init.d/xinetd start && service postfix start && service rsyslog start && service php7.0-fpm start && nginx
 
 # Set the current working directory
 WORKDIR /var/www/html

@@ -69,7 +69,7 @@ RUN chown -R $YANG_ID:$YANG_GID /var/run/mysqld
 RUN chmod 777 /var/run/mysqld
 
 RUN apt-get update
-RUN echo postfix postfix/mailname string yang2.amsl.com | debconf-set-selections; \
+RUN echo postfix postfix/mailname string yangcatalog.org | debconf-set-selections; \
     echo postfix postfix/main_mailer_type string 'Internet Site' | debconf-set-selections; \
     apt-get -y install postfix rsyslog systemd
 RUN apt-get -y install rsync xinetd

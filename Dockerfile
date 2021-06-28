@@ -63,7 +63,7 @@ RUN /etc/init.d/xinetd restart
 
 # COPY --chown=yang:yang web_root /usr/share/nginx/html/
 # COPY --chown=yang:yang search/static/ /usr/share/nginx/html/yang-search/static/
-COPY --chown=yang:yang yangre/app/static/ /usr/share/nginx/html/yangre/static/
+# COPY --chown=yang:yang yangre/app/static/ /usr/share/nginx/html/yangre/static/
 # COPY --chown=yang:yang bottle-yang-extractor-validator/yangvalidator/static/ /usr/share/nginx/html/yangvalidator/static/
 COPY --chown=yang:yang conf/${NGINX_FILES}  /etc/nginx/conf.d/
 

@@ -18,8 +18,7 @@ RUN apt-get update && apt-get -y install \
     build-essential \
     tcl8.5 \
     git \
-    nginx \
-    apache2-utils
+    nginx
 
 # Turn off daemon mode
 # Reference: http://stackoverflow.com/questions/18861300/how-to-run-nginx-within-docker-container-without-halting
@@ -62,7 +61,7 @@ RUN sed -i 's/disable[[:space:]]*=[[:space:]]*yes/disable = no/g' /etc/xinetd.d/
 
 RUN /etc/init.d/xinetd restart
 
-# COPY --chown=yang:yang web_root /usr/share/nginx/html/
+COPY --chown=yang:yang web_root/downloadables /usr/share/nginx/html/downloadables/
 # COPY --chown=yang:yang search/static/ /usr/share/nginx/html/yang-search/static/
 # COPY --chown=yang:yang yangre/app/static/ /usr/share/nginx/html/yangre/static/
 # COPY --chown=yang:yang bottle-yang-extractor-validator/yangvalidator/static/ /usr/share/nginx/html/yangvalidator/static/

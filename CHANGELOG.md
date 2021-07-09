@@ -2,6 +2,11 @@
 
 * ##### vm.m.p - 2021-MM-DD
 
+* ##### v4.0.0 - 2021-07-09
+
+  * php7.0 removed from frontend build process [#17](https://github.com/YangCatalog/web_root/issues/17)
+  * yang2.amsl.com mailname replaced by yangcatalog.org [deployment #73](https://github.com/YangCatalog/deployment/issues/73)
+
 * ##### v3.2.1 - 2021-05-04
 
   * No changes - released with other [deployment submodules](https://github.com/YangCatalog/deployment)

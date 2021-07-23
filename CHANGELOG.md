@@ -2,6 +2,8 @@
 
 * ##### vm.m.p - 2021-MM-DD
 
+  * Unnecessary static files removed [#18](https://github.com/YangCatalog/web_root/issues/18)
+
 * ##### v4.0.0 - 2021-07-09
 
   * php7.0 removed from frontend build process [#17](https://github.com/YangCatalog/web_root/issues/17)

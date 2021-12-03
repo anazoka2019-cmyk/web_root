@@ -18,7 +18,8 @@ RUN apt-get update && apt-get -y install \
     build-essential \
     tcl8.5 \
     git \
-    nginx
+    nginx \
+    vim
 
 # Turn off daemon mode
 # Reference: http://stackoverflow.com/questions/18861300/how-to-run-nginx-within-docker-container-without-halting

@@ -1,11 +1,9 @@
 FROM ubuntu:18.04
 
-RUN set -ex; \
-    apt-get update; \
-    apt-get install -y --no-install-recommends \
+RUN set -ex && apt-get update && apt-get install -y --no-install-recommends \
     pwgen \
     tzdata \
-    xz-utils;
+    xz-utils
 
 RUN apt-get update && apt-get -y install \
     software-properties-common \
@@ -23,7 +21,7 @@ RUN apt-get update && apt-get -y install \
 
 # Turn off daemon mode
 # Reference: http://stackoverflow.com/questions/18861300/how-to-run-nginx-within-docker-container-without-halting
-RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+RUN echo "\ndaemon off;" >>/etc/nginx/nginx.conf
 
 # Backup the default configurations
 RUN mv /etc/nginx/sites-available/default /etc/nginx/sites-available/default.original
@@ -42,17 +40,12 @@ ENV YANG_ID "$YANG_ID"
 ENV YANG_GID "$YANG_GID"
 ENV NGINX_FILES "$NGINX_FILES"
 
-RUN groupadd -g ${YANG_GID} -r yang \
-    && useradd --no-log-init -r -g yang -u ${YANG_ID} -m -d /home/yang yang
-
-RUN mkdir /var/run/mysqld
-RUN chown -R $YANG_ID:$YANG_GID /var/run/mysqld
-RUN chmod 777 /var/run/mysqld
+RUN groupadd -g ${YANG_GID} -r yang && useradd --no-log-init -r -g yang -u ${YANG_ID} -m -d /home/yang yang
 
 RUN apt-get update
-RUN echo postfix postfix/mailname string yangcatalog.org | debconf-set-selections; \
-    echo postfix postfix/main_mailer_type string 'Internet Site' | debconf-set-selections; \
-    apt-get -y install postfix rsyslog systemd
+RUN echo postfix postfix/mailname string yangcatalog.org | debconf-set-selections
+RUN echo postfix postfix/main_mailer_type string 'Internet Site' | debconf-set-selections
+RUN apt-get -y install postfix rsyslog systemd
 RUN apt-get -y install rsync xinetd
 RUN apt-get -y install net-tools
 RUN apt-get autoremove -y
@@ -64,7 +57,7 @@ RUN /etc/init.d/xinetd restart
 
 COPY --chown=yang:yang web_root/downloadables /usr/share/nginx/html/downloadables/
 COPY --chown=yang:yang yangre/app/static/. /usr/share/nginx/html/assets/.
-COPY --chown=yang:yang conf/${NGINX_FILES}  /etc/nginx/conf.d/
+COPY --chown=yang:yang conf/${NGINX_FILES} /etc/nginx/conf.d/
 
 COPY ./resources/main.cf /etc/postfix/main.cf
 COPY ./resources/rsyncd.conf /etc/rsyncd.conf

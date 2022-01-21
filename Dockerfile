@@ -55,8 +55,10 @@ RUN sed -i 's/disable[[:space:]]*=[[:space:]]*yes/disable = no/g' /etc/xinetd.d/
 
 RUN /etc/init.d/xinetd restart
 
+RUN mkdir -p /usr/share/nginx/html/assets/
 COPY --chown=yang:yang web_root/downloadables /usr/share/nginx/html/downloadables/
 COPY --chown=yang:yang yangre/app/static/. /usr/share/nginx/html/assets/.
+COPY --chown=yang:yang yang-validator-extractor/static/swagger-yangvalidator.json /usr/share/nginx/html/assets/
 COPY --chown=yang:yang conf/${NGINX_FILES} /etc/nginx/conf.d/
 
 COPY ./resources/main.cf /etc/postfix/main.cf

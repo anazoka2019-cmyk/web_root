@@ -6,6 +6,428 @@
 	},
 	"item": [
 		{
+			"name": "yangvalidator",
+			"item": [
+				{
+					"name": "validate draft latest false no missing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"draft\": \"draft-ietf-netmod-yang-types-09\",\n    \"latest\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/draft",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"draft"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate draft latest true no missing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"draft\": \"draft-ietf-netmod-yang-types-09\",\n    \"latest\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/draft",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"draft"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate draft latest false with missing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"draft\": \"draft-ietf-netmod-sub-intf-vlan-model-06\",\n    \"latest\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/draft",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"draft"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate draft choose missing modules ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"modules-to-validate\": {\n        \"user-modules\": [\n            \"ietf-if-l3-vlan@2019-11-04.yang\",\n            \"ietf-flexible-encapsulation@2019-11-04.yang\"\n        ]\n    },\n    \"cache\": \"yangvalidator-v2-cache-rbOUAMXm\",\n    \"dependencies\": {\n        \"repo-modules\": [\n            \"ietf-interfaces@2013-12-23.yang\",\n            \"iana-if-type@2017-01-19.yang\",\n            \"ieee802-dot1q-types@2018-03-07.yang\",\n            \"ietf-if-extensions@2020-07-29.yang\",\n            \"ietf-yang-types@2019-07-21.yang\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/validate",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate rfc latest true with missing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rfc\": \"7223\",\n    \"latest\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/rfc",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"rfc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate rfc latest false with missing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rfc\": \"7223\",\n    \"latest\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/rfc",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"rfc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate rfc choose missing modules ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"modules-to-validate\": {\n            \"user-modules\": [\n                \"ietf-interfaces@2014-05-08.yang\"\n            ]\n        },\n        \"cache\": \"yangvalidator-v2-cache-aNgXgrHf\",\n        \"dependencies\": {\n            \"repo-modules\": [\n                \"ietf-yang-types@2012-09-28.yang\"\n            ]\n        }\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/validate",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate document multiple modules no pre setup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"type": "file",
+									"src": "/home/miroslav/postman-yangvalidator/draft-missing.txt"
+								},
+								{
+									"key": "data",
+									"type": "file",
+									"src": "/home/miroslav/postman-yangvalidator/draft-not-missing.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/draft-validator",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"draft-validator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pre setup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"get-from-options\": true,\r\n    \"latest\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/upload-files-setup",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"upload-files-setup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pre setup latest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"latest\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/upload-files-setup",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"upload-files-setup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pre setup get from options",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"get-from-options\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/upload-files-setup",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"upload-files-setup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate document multiple modules with pre setup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"type": "file",
+									"src": "/home/miroslav/postman-yangvalidator/draft-missing.txt"
+								},
+								{
+									"key": "data",
+									"type": "file",
+									"src": "/home/miroslav/postman-yangvalidator/draft-not-missing.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/draft-validator/yangvalidator-v2-cache-nUnaztSb",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"draft-validator",
+								"yangvalidator-v2-cache-nUnaztSb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate modules multiple modules with pre setup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"type": "file",
+									"src": "/home/miroslav/postman-yangvalidator/ietf-interfaces@2018-01-09.yang"
+								},
+								{
+									"key": "data",
+									"type": "file",
+									"src": "/home/miroslav/postman-yangvalidator/ietf-yang-types@2019-02-27.yang"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/validator/yangvalidator-v2-cache-EqtIjjtX",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"validator",
+								"yangvalidator-v2-cache-EqtIjjtX"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get validators versions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{ip}}/yangvalidator/v2/versions",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{ip}}"
+							],
+							"path": [
+								"yangvalidator",
+								"v2",
+								"versions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Return all metadata for specific module in the catalog",
 			"request": {
 				"method": "GET",

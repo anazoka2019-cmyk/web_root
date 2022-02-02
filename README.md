@@ -1,5 +1,5 @@
 # yangcatalog.org
-Static web content for yangcatalog.org
+Static web content for [yangcatalog.org](https://yangcatalog.org/).
 
 ## NGINX Configuration
 

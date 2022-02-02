@@ -1,6 +1,11 @@
 ## Webroot Release Notes
 
-* ##### vm.m.p - 2021-MM-DD
+* ##### vm.m.p - 2022-MM-DD
+
+* ##### v5.0.0 - 2022-02-02
+
+  * YANG Validator Swagger documentation added to the Docker build steps
+  * Postman collection updated with YANG Validator requests [#12](https://github.com/YangCatalog/web_root/issues/12)
 
 * ##### v4.3.0 - 2021-12-03
 

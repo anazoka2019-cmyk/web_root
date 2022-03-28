@@ -2,6 +2,10 @@
 
 * ##### vm.m.p - 2022-MM-DD
 
+* ##### v5.1.0 - 2022-03-28
+
+  * Various updates to the Dockerfile - speed up the building process
+
 * ##### v5.0.0 - 2022-02-02
 
   * YANG Validator Swagger documentation added to the Docker build steps
